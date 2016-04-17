@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://xml.netbeans.org/schema/lss_cpu"
+           xmlns="http://xml.netbeans.org/schema/lss_cpu"
+           elementFormDefault="qualified">
+           <xsd:element name="cpu" type="CPUJAXB"/>
+           <xsd:element name="videoCard" type="VideoCardJAXB"/>
+           <xsd:element name="laptopJAXB" type="LaptopJAXB"/>
+           <xsd:complexType name="VideoCardJAXB">
+               <xsd:sequence>
+                   <xsd:element name="name" type="xsd:string"/>
+                   <xsd:element name="mark" type="xsd:positiveInteger"/>
+               </xsd:sequence>
+           </xsd:complexType>            
+           <xsd:complexType name="CPUJAXB">
+               <xsd:sequence>
+                   <xsd:element name="name" type="xsd:string"/>
+                   <xsd:element name="mark" type="xsd:positiveInteger"/>
+               </xsd:sequence>
+           </xsd:complexType>
+           <xsd:complexType name="LaptopJAXB">
+               <xsd:sequence>
+                   <xsd:element name="brandId" type="xsd:positiveInteger" nillable="true"/>
+                   <xsd:element name="name" type="xsd:string"/>
+                   <xsd:element name="cpu" type="xsd:positiveInteger"/>
+                   <xsd:element name="cache" type="CacheType" nillable="true"/>
+                   <xsd:element name="ramSize" type="xsd:positiveInteger"/>
+                   <xsd:element name="ramType" type="RAMType" nillable="true"/>
+                   <xsd:element name="ramBUS" type="RAMBus" nillable="true"/>
+                   <xsd:element name="hddStorage" type="xsd:positiveInteger" nillable="true"/>
+                   <xsd:element name="ssdStorage" type="xsd:positiveInteger" nillable="true"/>
+                   <xsd:element name="screenSize" type="ScreenSize"/>
+                   <xsd:element name="displayResolution" type="DisplayResolution" nillable="true"/>
+                   <xsd:element name="touch" type="xsd:boolean" nillable="true"/>
+                   <xsd:element name="internalVideoCard" type="xsd:positiveInteger" nillable="true"/>
+                   <xsd:element name="externalVideoCard" type="xsd:positiveInteger" nillable="true"/>
+                   <xsd:element name="opticalDrive" type="xsd:string" nillable="true"/>
+                   <xsd:element name="osVersion" type="xsd:string" nillable="true"/>
+                   <xsd:element name="bluetooth" type="xsd:string" nillable="true"/>
+                   <xsd:element name="port" type="xsd:string" nillable="true"/>
+                   <xsd:element name="lan" type="xsd:string" nillable="true"/>
+                   <xsd:element name="wifi" type="xsd:string" nillable="true"/>
+                   <xsd:element name="webcam" type="xsd:string" nillable="true"/>
+                   <xsd:element name="cardPort" type="xsd:string" nillable="true"/>
+                   <xsd:element name="battery" type="Battery" nillable="true"/>
+                   <xsd:element name="weight" type="Weight" nillable="true"/>
+                   <xsd:element name="warranty" type="xsd:positiveInteger" nillable="true"/>
+                   <xsd:element name="size" type="xsd:string" nillable="true"/>
+                   <xsd:element name="avatar" type="LinkType"/>
+                   <xsd:element name="sourceLink" type="LinkType"/>
+                   <xsd:element name="host" type="LinkType"/>
+                   <xsd:element name="price" type="xsd:positiveInteger"/>
+               </xsd:sequence>
+           </xsd:complexType>
+           <xsd:simpleType name="CacheType">
+               <xsd:restriction base="xsd:string">
+                   <xsd:pattern value="[0-9]{1,2}\s*(M|m)(B|b)"/>
+               </xsd:restriction>
+           </xsd:simpleType>
+           <xsd:simpleType name="RAMType">
+               <xsd:restriction base="xsd:string">
+                   <xsd:maxLength value="15"/>
+               </xsd:restriction>
+           </xsd:simpleType>
+           <xsd:simpleType name="RAMBus">
+               <xsd:restriction base="xsd:string">
+                   <xsd:pattern value="[0-9]{3,4}\s*(M|m)(H|h)(Z|z)"/>
+               </xsd:restriction>
+           </xsd:simpleType>
+           <xsd:simpleType name="DisplayResolution">
+               <xsd:restriction base="xsd:string">
+                   <xsd:pattern value="[0-9]{3,4}(X|x)[0-9]{3,4}"/>
+               </xsd:restriction>
+           </xsd:simpleType>
+           <xsd:simpleType name="Battery">
+               <xsd:restriction base="xsd:string">
+                   <xsd:pattern value="[0-9]{1,2}\s*(C|c)(E|e)(L|l){2}(S|s)?"/>
+               </xsd:restriction>
+           </xsd:simpleType>
+           <xsd:simpleType name="LinkType">
+               <xsd:restriction base="xsd:string">
+                   <xsd:pattern value="(http|www).*"/>
+               </xsd:restriction>
+           </xsd:simpleType>
+           <xsd:simpleType name="ScreenSize">
+               <xsd:restriction base="xsd:float">
+                   <xsd:minExclusive value="0"/>
+                   <xsd:maxExclusive value="30"/>
+               </xsd:restriction>
+           </xsd:simpleType>
+           <xsd:simpleType name="Weight">
+               <xsd:restriction base="xsd:float">
+                   <xsd:minExclusive value="0"/>
+                   <xsd:maxExclusive value="10"/>
+               </xsd:restriction>
+           </xsd:simpleType>
+</xsd:schema>
