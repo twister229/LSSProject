@@ -8,6 +8,7 @@ package fpt.lss.entity;
 import fpt.lss.annotation.Entity;
 import fpt.lss.annotation.Key;
 import fpt.lss.annotation.Table;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -15,7 +16,7 @@ import java.math.BigDecimal;
  * @author HongLinh
  */
 @Table(name = "Laptop_Provider")
-public class Laptop_Provider {
+public class Laptop_Provider implements Serializable {
 
     @Key(indentity = true)
     @Entity(name = "Id")

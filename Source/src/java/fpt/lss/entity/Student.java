@@ -5,10 +5,10 @@
  */
 package fpt.lss.entity;
 
-
 import fpt.lss.annotation.Entity;
 import fpt.lss.annotation.Key;
 import fpt.lss.annotation.Table;
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
@@ -16,7 +16,7 @@ import java.sql.Date;
  * @author HongLinh
  */
 @Table(name = "StudentInfo")
-public class Student {
+public class Student implements Serializable {
 
     @Key
     @Entity(name = "Code")

@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/PROJECT/JavaNetbeans/LSSProject/src/java/fpt/lss/entity/Laptop.java</file>
-            <file>file:/D:/PROJECT/JavaNetbeans/LSSProject/src/java/fpt/lss/jaxb/schema.xsd</file>
-            <file>file:/D:/PROJECT/JavaNetbeans/LSSProject/src/java/fpt/lss/crawler/HangChinhHieuGetter.java</file>
-            <file>file:/D:/PROJECT/JavaNetbeans/LSSProject/src/java/fpt/lss/crawler/ValidationHandler.java</file>
-            <file>file:/D:/PROJECT/JavaNetbeans/LSSProject/src/java/fpt/lss/crawler/LaptopCrawler.java</file>
-            <file>file:/D:/PROJECT/JavaNetbeans/LSSProject/src/java/fpt/lss/utils/XMLUtils.java</file>
+            <file>file:/D:/LSSPROJECT/Source/web/homepage.jsp</file>
+            <file>file:/D:/LSSPROJECT/Source/src/java/fpt/lss/entity/Laptop.java</file>
+            <file>file:/D:/LSSPROJECT/Source/web/resource/css/style.css</file>
+            <file>file:/D:/LSSPROJECT/Source/src/java/fpt/lss/dao/BrandDAO.java</file>
+            <file>file:/D:/LSSPROJECT/Source/src/java/fpt/lss/servlet/HomeServlet.java</file>
         </group>
     </open-files>
 </project-private>

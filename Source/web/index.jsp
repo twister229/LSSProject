@@ -14,7 +14,7 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <c:forEach var="stu" items="${RESULT}" varStatus="counter">
+        <c:forEach var="stu" items="${LISTLAP}" varStatus="counter">
             ${counter.count}. ${stu.name} <br/>
         </c:forEach>
     </body>

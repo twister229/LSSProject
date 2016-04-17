@@ -3,14 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package fpt.lss.servlet;
 
-import fpt.lss.entity.Student;
-import fpt.lss.utils.DBUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author HongLinh
  */
 public class CenterServlet extends HttpServlet {
+
+    private final String homeServlet = "HomeServlet";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,14 +33,16 @@ public class CenterServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         try {
-            List result = DBUtils.fetchAll(Student.class);
-            request.setAttribute("RESULT", result);
-            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-            rd.forward(request, response);
+            String btAction = request.getParameter("btAction");
+            if (btAction == null) {
+                btAction = "homepage";
+            }
+            if (btAction.equals("homepage")) {
+                RequestDispatcher rd = request.getRequestDispatcher(homeServlet);
+                rd.forward(request, response);
+            }
         } finally {
-            out.close();
         }
     }
 

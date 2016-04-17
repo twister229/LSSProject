@@ -125,17 +125,22 @@ public class DBUtils {
         return null;
     }
 
-    public static <T> List fetchByQuery(String query, Class<T> entityClass) {
+    public static <T> List<T> fetchByQuery(String query, Class<T> entityClass, Object... params) {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
 
         try {
             con = getConnection();
-            List result = new ArrayList();
+            List<T> result = new ArrayList<T>();
             T instance;
             String sql = "SELECT * FROM " + entityClass.getAnnotation(Table.class).name() + " " + query;
             stm = con.prepareStatement(sql);
+            if (params != null) {
+                for (int i = 0; i < params.length; i++) {
+                    stm.setObject(i + 1, params[i]);
+                }
+            }
             rs = stm.executeQuery();
 
             while (rs.next()) {

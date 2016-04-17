@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package fpt.lss.entity;
 
 import fpt.lss.annotation.Entity;
 import fpt.lss.annotation.Key;
 import fpt.lss.annotation.Table;
+import java.io.Serializable;
 
 /**
  *
  * @author HongLinh
  */
 @Table(name = "CPU")
-public class CPU {
+public class CPU implements Serializable {
+
     @Key(indentity = true)
     @Entity(name = "Id")
     private int id;
@@ -55,6 +56,5 @@ public class CPU {
     public void setMark(int mark) {
         this.mark = mark;
     }
-    
-    
+
 }

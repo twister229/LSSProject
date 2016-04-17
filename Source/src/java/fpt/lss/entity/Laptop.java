@@ -9,21 +9,21 @@ import fpt.lss.annotation.Entity;
 import fpt.lss.annotation.Key;
 import fpt.lss.annotation.Table;
 import fpt.lss.jaxb.LaptopJAXB;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
-import sun.nio.cs.ext.Big5;
 
 /**
  *
  * @author HongLinh
  */
 @Table(name = "Laptop")
-public class Laptop {
+public class Laptop implements Serializable {
 
     @Key(indentity = true)
     @Entity(name = "Id")
-    private BigDecimal id;
+    private Integer id;
     @Entity(name = "BrandId")
     private Integer brandId;
     @Entity(name = "Name")
@@ -136,7 +136,7 @@ public class Laptop {
                 lapJAXB.getAvatar(), lapJAXB.getSourceLink());
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         return id;
     }
 

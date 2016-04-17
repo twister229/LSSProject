@@ -8,13 +8,14 @@ package fpt.lss.entity;
 import fpt.lss.annotation.Entity;
 import fpt.lss.annotation.Key;
 import fpt.lss.annotation.Table;
+import java.io.Serializable;
 
 /**
  *
  * @author HongLinh
  */
 @Table(name = "VideoCard")
-public class VideoCard {
+public class VideoCard implements Serializable {
 
     @Key(indentity = true)
     @Entity(name = "Id")
