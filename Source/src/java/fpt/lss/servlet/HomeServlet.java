@@ -40,7 +40,7 @@ public class HomeServlet extends HttpServlet {
             List listBrand = brandDAO.getAllBrand();
             request.setAttribute("LISTBRAND", listBrand);
             
-            String cateParam = request.getParameter("category");
+            String cateParam = request.getParameter("brandId");
             int brandId = 0;
             if (cateParam == null) {
                 cateParam = "1";

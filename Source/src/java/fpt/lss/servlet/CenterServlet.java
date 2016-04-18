@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 public class CenterServlet extends HttpServlet {
 
     private final String homeServlet = "HomeServlet";
+    private final String compareServlet = "CompareServlet";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,8 +39,12 @@ public class CenterServlet extends HttpServlet {
             if (btAction == null) {
                 btAction = "homepage";
             }
+            System.out.println("ACTION: "+ btAction);
             if (btAction.equals("homepage")) {
                 RequestDispatcher rd = request.getRequestDispatcher(homeServlet);
+                rd.forward(request, response);
+            } else if (btAction.equals("So sánh")) {
+                RequestDispatcher rd = request.getRequestDispatcher(compareServlet);
                 rd.forward(request, response);
             }
         } finally {

@@ -22,4 +22,7 @@ public class LaptopDAO {
         List<Laptop> result = DBUtils.fetchByQuery(query, Laptop.class, BigDecimal.valueOf(brandId));
         return result;
     }
+    public Laptop getById(int lapId) {
+        return DBUtils.fetchByKey(Integer.valueOf(lapId), Laptop.class);
+    }
 }

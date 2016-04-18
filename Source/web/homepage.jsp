@@ -4,7 +4,7 @@
     Author     : HongLinh
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link type="text/css" href="resource/css/style.css" rel="stylesheet"/>
+        <script type="text/javascript" src="resource/js/myjs.js"></script>
     </head>
     <body>
         <div id="main_container">
@@ -44,15 +45,27 @@
                     </ul>
                 </div>
                 <!-- end of menu tab -->
+                <div id="portamento_container" style="min-height: 78px; width: 194px;">
+                    <form action="CenterServlet" id="sidebar" method="POST">	
+                        <p style="font-size:.65em; margin: 0; position: absolute; right: 5px;"><a id="sidebar_minimize" href="#">minimize &gt;&gt;</a></p>
+                        <br>
+                        <p id="sidebar_default_text" style="font-size: 13px;">Danh sách laptop so sánh</p>
+                        <div id="div_sidebar_table" class="compare_table">
+                            <table id="compareTable">
+                                <thead><tr><th colspan="2">Laptop so sánh</th></tr></thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>       
+                        <input type="submit" name="btAction" id="sidebar_button" value="So sánh" onclick="return compareLap();"/>
+                    </form>
+                </div>
                 <div class="crumb_navigation"> Navigation: <span class="current">Home</span> </div>
                 <div class="left_content">
                     <div class="title_box">Categories</div>
                     <ul class="left_menu">
-                        <li class="odd"><a href="#">Power Tools</a></li>
-                        <li class="even"><a href="#">Air Tools</a></li>
                         <c:forEach var="brand" items="${LISTBRAND}">
-                            <li class="odd"><a href="#">${brand.name}</a></li>
-                        </c:forEach>
+                            <li class="odd"><a href="CenterServlet?btAction=homepage&brandId=${brand.id}">${brand.name}</a></li>
+                            </c:forEach>
                     </ul>
                     <div class="title_box">Special Products</div>
                     <div class="border_box">
@@ -60,11 +73,6 @@
                         <div class="product_img"><a href="#"><img src="images/p1.jpg" alt="" border="0" /></a></div>
                         <div class="prod_price"><span class="reduce">350$</span> <span class="price">270$</span></div>
                     </div>
-                    <div class="title_box">Newsletter</div>
-                    <div class="border_box">
-                        <input type="text" name="newsletter" class="newsletter_input" value="your email"/>
-                        <a href="#" class="join">subscribe</a> </div>
-                    <div class="banner_adds"> <a href="#"><img src="images/bann2.jpg" alt="" border="0" /></a> </div>
                 </div>
                 <!-- end of left content -->
                 <div class="center_content">
@@ -77,12 +85,17 @@
                     <div class="center_title_bar">Latest Products</div>
                     <c:forEach var="lap" items="${LISTLAP}">
                         <div class="prod_box">
-                            <div class="center_prod_box">
-                                <div class="product_title"><a href="#">${lap.name}</a></div>
-                                <div class="product_img"><a href="#"><img style="width: 150px;height: 150px;" src="${lap.avatar}" alt="" border="0" /></a></div>
-                                <!--<div class="prod_price"><span class="reduce">350$</span> <span class="price">270$</span></div>-->
+                            <a href="CenterServlet?btAction=viewDetail&laptopId=${lap.id}">
+                                <div class="center_prod_box">
+                                    <div class="product_title">${lap.name}</div>
+                                    <div class="product_img"><img style="width: 150px;height: 150px;" src="${lap.avatar}" alt="" border="0" /></div>
+                                    <!--<div class="prod_price"><span class="reduce">350$</span> <span class="price">270$</span></div>-->
+                                </div>
+                            </a>
+                            <div class="prod_details_tab">
+                                <button class="prod_buy" onclick="addCompare(${lap.id}, '${lap.name}');">So sánh</button>
+                                <a href="#" class="prod_details">Details</a>
                             </div>
-                            <div class="prod_details_tab"> <a href="#" class="prod_buy">Add to Cart</a> <a href="#" class="prod_details">Details</a> </div>
                         </div>
                     </c:forEach>
                     <div class="center_title_bar">Recomended Products</div>
@@ -112,37 +125,7 @@
                     </div>
                 </div>
                 <!-- end of center content -->
-                <div class="right_content">
-                    <div class="title_box">Search</div>
-                    <div class="border_box">
-                        <input type="text" name="newsletter" class="newsletter_input" value="keyword"/>
-                        <a href="#" class="join">search</a> </div>
-                    <div class="shopping_cart">
-                        <div class="title_box">Shopping cart</div>
-                        <div class="cart_details"> 3 items <br />
-                            <span class="border_cart"></span> Total: <span class="price">350$</span> </div>
-                        <div class="cart_icon"><a href="#"><img src="images/shoppingcart.png" alt="" width="35" height="35" border="0" /></a></div>
-                    </div>
-                    <div class="title_box">What’s new</div>
-                    <div class="border_box">
-                        <div class="product_title"><a href="#">Motorola 156 MX-VL</a></div>
-                        <div class="product_img"><a href="#"><img src="images/p2.jpg" alt="" border="0" /></a></div>
-                        <div class="prod_price"><span class="reduce">350$</span> <span class="price">270$</span></div>
-                    </div>
-                    <div class="title_box">Manufacturers</div>
-                    <ul class="left_menu">
-                        <li class="odd"><a href="#">Bosch</a></li>
-                        <li class="even"><a href="#">Samsung</a></li>
-                        <li class="odd"><a href="#">Makita</a></li>
-                        <li class="even"><a href="#">LG</a></li>
-                        <li class="odd"><a href="#">Fujitsu Siemens</a></li>
-                        <li class="even"><a href="#">Motorola</a></li>
-                        <li class="odd"><a href="#">Phillips</a></li>
-                        <li class="even"><a href="#">Beko</a></li>
-                    </ul>
-                    <div class="banner_adds"> <a href="#"><img src="images/bann1.jpg" alt="" border="0" /></a> </div>
-                </div>
-                <!-- end of right content -->
+                
             </div>
             <!-- end of main content -->
             <div class="footer">
