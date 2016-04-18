@@ -19,7 +19,7 @@ public class CPU implements Serializable {
 
     @Key(indentity = true)
     @Entity(name = "Id")
-    private int id;
+    private Integer id;
     @Entity(name = "Name")
     private String name;
     @Entity(name = "Mark")
@@ -33,11 +33,11 @@ public class CPU implements Serializable {
         this.mark = mark;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

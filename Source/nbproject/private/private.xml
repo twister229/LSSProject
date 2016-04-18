@@ -3,11 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/LSSPROJECT/Source/web/resource/css/compare_style.css</file>
+            <file>file:/D:/LSSPROJECT/Source/src/java/fpt/lss/dao/LaptopDAO.java</file>
             <file>file:/D:/LSSPROJECT/Source/web/homepage.jsp</file>
             <file>file:/D:/LSSPROJECT/Source/src/java/fpt/lss/entity/Laptop.java</file>
+            <file>file:/D:/LSSPROJECT/Source/web/resource/js/myjs.js</file>
+            <file>file:/D:/LSSPROJECT/Source/web/compare.jsp</file>
             <file>file:/D:/LSSPROJECT/Source/web/resource/css/style.css</file>
-            <file>file:/D:/LSSPROJECT/Source/src/java/fpt/lss/dao/BrandDAO.java</file>
+            <file>file:/D:/LSSPROJECT/Source/src/java/fpt/lss/servlet/CompareServlet.java</file>
             <file>file:/D:/LSSPROJECT/Source/src/java/fpt/lss/servlet/HomeServlet.java</file>
+            <file>file:/D:/LSSPROJECT/Source/src/java/fpt/lss/filter/CharsetFilter.java</file>
+            <file>file:/D:/LSSPROJECT/Source/src/java/fpt/lss/servlet/CenterServlet.java</file>
         </group>
     </open-files>
 </project-private>

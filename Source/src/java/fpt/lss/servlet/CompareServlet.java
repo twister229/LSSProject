@@ -7,6 +7,7 @@
 package fpt.lss.servlet;
 
 import fpt.lss.dao.LaptopDAO;
+import fpt.lss.dto.LaptopCompareDTO;
 import fpt.lss.entity.Laptop;
 import fpt.lss.utils.DBUtils;
 import java.io.IOException;
@@ -44,11 +45,11 @@ public class CompareServlet extends HttpServlet {
             String listLapId[] = request.getParameterValues("lapCompare");
             int id;
             Laptop lap;
-            List<Laptop> listLap = new ArrayList<Laptop>();
+            List<LaptopCompareDTO> listLap = new ArrayList<LaptopCompareDTO>();
             for (String str : listLapId) {
                 id = Integer.parseInt(str);
                 lap = lapDAO.getById(id);
-                listLap.add(lap);
+                listLap.add(new LaptopCompareDTO(lap));
             }
             
             request.setAttribute("LISTLAP", listLap);
