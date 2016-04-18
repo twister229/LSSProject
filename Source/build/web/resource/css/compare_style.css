@@ -1,625 +1,163 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Apr 18, 2016, 2:43:44 AM
-    Author     : HongLinh
-*/
-
-@font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 300;
-    src: local('Open Sans Light'), local('OpenSans-Light'), url(/elements/objects/open-sans-300.woff) format('woff');
-}
-
-@font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Open Sans'), local('OpenSans'), url(/elements/objects/open-sans-400.woff) format('woff');
-}
-
-@font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 600;
-    src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(/elements/objects/open-sans-600.woff) format('woff');
-}
-
-
-*, *:before, *:after {
-    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
-}
-
-body
-{
-    background: #ffffff;
-    color: #000000;
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
-    font-weight: 300;
-    font-family: 'Open Sans', sans-serif;
-}
-
-h1
-{
-    font-size: 30px;
-    font-weight: 300;
-}
-
-input, textarea
-{
-    /* Per default, input fields other then submit use content-box.
-       That makes it very hard to align suff. So lets switch it to
-       border-box. */
-    box-sizing: border-box; 
-    -moz-box-sizing: border-box;
-}
-
-@media screen and (-webkit-min-device-pixel-ratio:0)
-{
-    /* Webkit based browsers have a grey background
-       in radio buttons. To get rid of them, -webkit-appearance: none is
-       needed. That makes them invisible in some browsers.
-       So there is a lot of styleing needed to make them look right: */
-    input[type=radio]
-    {
-        -webkit-appearance: none;
-        height: 1em;
-        width: 1em;
-        border: 1px solid #000000;
-        cursor: pointer; 
-        border-radius: 2em;
-    }
-    input[type=radio]:checked
-    {
-        background-color: #000000;
-    }
-}
-
-input[type=text], input[type=number], input[type=submit], textarea, button
-{
-    border: 1px solid #c0c0c0;
-    font-family: 'Open Sans';
-    font-weight: 300;
-    -webkit-appearance: none;
-    vertical-align: middle;
-}
-
-a
-{
-    color: #000000;
-    text-decoration: none;
-    outline: 0;
-}
-
-a:hover
-{
-    text-decoration: underline;
-}
-
-form {
-    margin: 0;
-}
-
-input::-moz-focus-inner
-{ 
-    border: 0;
-}
-
-input[type="submit"],.continue,button
-{
-    background-color: #808080;
-    border-radius: 4px 4px 4px 4px;
-    border: 1px solid #c0c0c0;
-    color: #303030;
-    cursor: pointer;
-    font-size: 17px;
-    padding: 6px 12px;
-    vertical-align: middle;
-    outline: 0;
-    font-weight: 400;
-    /* without the following 2 styles, my ipad 2 will make funny things with
-       input[type=submit] elements. 2013-09-04 /mg */
-    -webkit-appearance: none;
-    -webkit-border-radius: 4px 4px 4px 4px;
-
-    background: #c2c2c2; /* Old browsers */
-    background: -moz-linear-gradient(top, #c2c2c2 0%, #a2a2a2 40%, #737373 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c2c2c2), color-stop(40%,#a2a2a2), color-stop(100%,#737373)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #c2c2c2 0%,#a2a2a2 40%,#737373 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #c2c2c2 0%,#a2a2a2 40%,#737373 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #c2c2c2 0%,#a2a2a2 40%,#737373 100%); /* IE10+ */
-    background: linear-gradient(to bottom, #f0f0f0 0%,#e0e0e0 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c2c2c2', endColorstr='#737373',GradientType=0 ); /* IE6-9 */
-}
-
-a.continue
-{
+body.comparison .comparison-size-container {
     display: inline-block;
 }
-
-.continue:hover
-{
-    text-decoration: none;
-}
-
-table
-{
+body.comparison .summary {
+    color: #05171d;
     border-collapse: collapse;
-    border-spacing: 0;
+    table-layout: fixed;
 }
 
-td
-{
-    padding: 0;
+*, dd {
+    line-height: 1.4em;
 }
 
-th
-{
-    padding-bottom: 20px;
+body.comparison .frm-comparison {
+    float: right;
 }
 
-.universe
-{
-    height: 100%;
-    width: 100%;
+body.comparison .summary .action-comparison th {
+    padding-bottom: 0;
+    border-bottom: 0 none;
 }
 
-/* HEADER */
-
-.logo
-{
-    position: absolute;
-    top: 0;
-    left: 0; 
-    width: 200px;
-    height: 82px;
-    line-height: 78px;
-    background: #f0f0f0;
-    font-size: 18px;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
-    white-space: nowrap;
-    border-bottom: 1px solid #d0d0d0;
-    text-align: center;
+body.comparison .summary th, body.comparison .summary td {
+    width: 153px;
+    padding: 10px;
 }
 
-.logo a
-{
-    color: #505050;
-    padding: 8px;
-    text-decoration: none;
+body.comparison .frm-comparison>button {
+    text-indent: 0;
+    font-size: 0;
+    position: relative;
+    right: -10px;
+    width: 20px;
+    height: 20px;
 }
 
-.logo a:hover, .title a:hover
-{
-    text-decoration: none;
-    color: #000;
-    transition: all 0.5s linear;
-}
-
-.title
-{
-    position: absolute;
-    top: 0;
-    left: 200px;
-    right: 0;
-    font-size: 30px;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-    /* white-space: nowrap; */
-    height: 82px;
-    line-height: 78px;
-    border-bottom: 1px solid #d0d0d0;
-}
-
-.content
-{
-    text-align: left;
-    vertical-align: middle;
-}
-
-/* IMPRINT */
-
-.imprint {
-    width: 400px;
-    margin: auto;
-}
-
-.spacer_top
-{
-    height: 10%;
-}
-
-@media (max-height: 710px)
-{
-    .spacer_top
-    {
-        height: 5%;
-    }
-}
-
-/* INDEX */
-
-.faves
-{
-    margin-top: 0px;
-}
-
-.faves table 
-{
-    margin: auto;
-    text-align: left; /* reset content */
-}
-
-.intro
-{
-    line-height: 1.5;
-    text-align: left;
-    font-weight: 400;
-    margin-bottom: 20px;
-    padding-right: 15px;
-    padding-left:  15px;
-}
-
-@media (min-width: 480px)
-{
-    .intro span
-    {
-        display: block;
-        text-align: center;
-    }
-}
-
-.content
-{
-    margin-bottom: 40px !important;
-}
-
-.content
-{
-    padding-left: 0;
-    padding-right: 0;
-}
-
-h1
-{
-    font-size: 25px;
-    padding-bottom: 10px;
-}
-
-.vs
-{
-    color: #f05000;
-    display: inline !important;
-}
-
-.comparison_and_controls
-{
-    display: -webkit-flex;
-    display: flex;
-    -webkit-justify-content: center;
-    justify-content: center;
-}
-
-.comparison_chart
-{
-    display: inline-block;
-    vertical-align: top;
-    background: #f0f0f0;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    max-width: 600px; /* fix for ipad 2: long names make the page wrap otherwise */
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-@media (min-width: 900px)
-{
-    .comparison_chart
-    {
-        min-width: 600px; /* prevent wiggling when switching between long and short item names */
-    }
-}
-
-
-@media (min-width: 500px)
-{
-    .comparison { width: 300px; }
-}
-
-.comparison
-{
-    margin: auto;
-    text-align: center;
-    background: linear-gradient( 90deg, #f0f0f0, #f0f0f0 50%, #00ff00 50%, #f0f0f0 50%);
-    margin-top: 2px;
-    margin-bottom: 2px;
-}
-
-.ctab
-{
-    margin: auto;
-    font-weight: 300;
-}
-
-.centerthingy
-{
-    background: linear-gradient( 90deg, #f0f0f0, #f0f0f0 50%, #50ff50 50%, #f0f0f0 50%);
-}
-
-.bar
-{
-    text-align: center;
-    margin-top: 4px;
-    margin-bottom: 4px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    font-size: 20px;
-    opacity: 0.7;
-}
-
-.data
-{
-    font-size: 17px;
-    text-align: center;
-}
-
-.bar span
-{
+.frm-remove-comparison>.action-remove {
     display: block;
-    background: rgba(240,240,240,0.5);
-    padding: 2px;
-    padding-right: 4px;
 }
 
-.variations
-{
-    margin-top: 1em;
+.frm-comparison>.action-remove {
+    display: none;
 }
 
-.variation
-{
-    margin-top: 1em;
-    margin-left: 1.2em;
+.action-add, .action-remove {
+    hyphens: none;
+    appearance: none;
+    background-color: transparent;
+    border: 0 none;
+    color: inherit;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 0;
+    margin: 0;
 }
 
-.variation:before
-{
-    display: inline-block;
-    position: absolute;
-    content: "â†’";
-    margin-left: -1.2em;
-    color: #0000ff;
+.frm-remove-comparison>.action-add {
+    display: none;
 }
 
-.variation p
-{
-    margin: 0px;
+.frm-comparison>.action-add {
+    display: block;
 }
 
-.item .name
-{
-    font-weight: 600;
+body.comparison tr:not(.model) th:first-child {
+    background: #f5f7f8;
+    border-right: 0 none;
+    padding-left: 0;
 }
 
-.item td
-{
-    padding: 2px;
-    vertical-align: top;
+.button-primary-small {
+    color: #ffffff;
+    -webkit-box-shadow: 0px 2px #a6132c;
+    box-shadow: 0px 2px #a6132c;
+    background-color: #e83755;
+    border-right-color: #bd1632;
+    padding: 6px 25px;
 }
 
-.price_info
-{
-    font-size: 80%;
+body.comparison .summary .product-images th:not(.cont-edit-comparison) {
+    border-bottom: none;
 }
 
-.price_info, .price_info a
-{
-    color: #505050;
+body.comparison .product-image {
+    position: relative;
+    clear: both;
+    text-align: center;
 }
 
-.item_infos
-{
-    margin: auto;
+.comparison-product-thumbnail {
+    display: block;
     width: 100%;
-    border-bottom: 1px solid #e0e0e0;
-    padding-bottom: 10px;
-    text-align: center;
-    padding-left : 40px;
-    padding-right: 40px;
+    max-height: 150px;
+    margin: 0 auto;
 }
 
-.item_infos td
-{
-    vertical-align: top;
-}
-
-.item_infos img
-{
-    opacity: 0.945;
-    vertical-align: top;
-    height: 150px;
-}
-
-.item_infos .names td
-{
-    padding-bottom: 8px;
-}
-
-.imgback
-{
-    display: inline-block;
-    background: #000;
-}
-
-.similar_item img
-{
-    opacity: 0.945;
-}
-
-.item_info_stuff
-{
-    display: table-cell;
-    vertical-align: middle;
-}
-
-.item_small_stuff
-{
-    padding-top   : 20px;
-    padding-bottom: 20px;
-}
-
-.item_small_stuff a
-{
-    color: #303030;
-}
-
-
-.similar_items
-{
-    vertical-align: top;
-    width: 200px;
-    margin-left: 10px;
-    display: inline-block;
-    background: #f4f4f4;
-    text-align: center;
-    max-height: 800px;
-    overflow: auto;
-    padding-left: 1em;
-    padding-right: 1em;
-}
-
-a.similar_item
-{
-    display: inline-block;
-    margin: 15px;
-    width: 130px;
-    height: 90px;
-    vertical-align: top;
-    text-align: center;
-    font-weight: 600;
-    color: #707070;
-}
-
-.similar_items a:hover
-{
-    text-decoration: none;
-    font-weight: 600;
-    color: #505050;
-}
-
-.similar_items img
-{
-    height: 50px;
-    margin: auto;
+body.comparison .summary .model th {
+    border-bottom-width: 3px;
+    padding-top: 0;
+    position: relative;
     vertical-align: bottom;
 }
 
-.similar_item.active, .similar_item.active:hover
-{
-    color: #e04000;
+.cell-inner-wrapper {
+    position: relative;
 }
 
-.price_info
-{
-    font-size: 14px;
-    padding-top: 8px;
+.product-details-micro {
+    position: relative;
 }
 
-.similar_items_headline
-{
-    text-align: center;
-    padding-top: 30px;
-    padding-bottom: 20px;
+body.comparison .name {
+    text-align: left;
+    word-break: break-all;
 }
 
-.similar_items_headline a
-{
-    color: #707070;
-    font-weight: 600;
+.name .manufacturer {
+    color: #05171d;
+    display: block;
+    clear: both;
 }
 
-@media (max-width: 800px)
-{
-    .comparison_and_controls
-    {
-        display: block;
-        text-align: center;
-    }
-
-    .similar_items
-    {
-        margin-top: 10px;
-        width: auto;
-        margin-left: 0px;
-        margin-right: 0px;
-        max-width: 544px;
-        min-width: 300px;
-    }
-
+.name .model {
+    font-family: "StagSansWeb-Semibold", "Arial Black", Arial, sans-serif;
+    font-weight: normal;
+    line-height: 1em;
 }
 
-@media (max-width: 550px)
-{
-    body
-    {
-        padding-left:  10px;
-        padding-right: 10px;
-    }
-
-    .content
-    {
-        margin-top: 0;
-        padding-top: 0;
-    }
-
-    .navi
-    {
-        margin-bottom: 0;
-        border-bottom: 0;
-        padding-bottom: 25px;
-    }
-
-    .item_infos img
-    {
-        height: 80px;
-    }
-
-    .comparison_chart
-    {
-        padding-left: 0;
-        padding-right: 0;
-    }
+body.comparison tr:not(.model) th:first-child {
+    background: #f5f7f8;
+    border-right: 0 none;
+    padding-left: 0;
 }
 
-.priceinfos td
-{
-    text-align: center;
+body.comparison th label {
+    min-width: 20px;
+    min-height: 20px;
+    font-family: "StagSansWeb-Book", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    margin: 2px 7px 20px 0;
 }
 
-.buyinfo
-{
-
+body.comparison th label input[type="checkbox"] {
+    display: none;
 }
 
-.buyinfo a
-{
-    text-transform: uppercase;
-    font-size: 14px;
-    font-weight: 600;
-    color: #505050;
-    display: inline-block;
-    margin-top   : 15px;
-    margin-bottom: 15px;
-    margin-left: 5px;
-    margin-right: 5px;
-    padding: 5px;
-    border: 2px solid rgba(85,255,0,0.25);
-    background: rgba(200,255,0,0.125);
+body.comparison .price .inner-label {
+    margin-top: 0;
+}
+
+body.comparison .comparison-price {
+    color: #05171d;
+    font-size: 18px;
+}
+
+body.comparison .comparison-smallprint {
+    font-family: "OpenSans-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    display: block;
+    color: #757575;
+    font-size: 12px;
+    margin-bottom: 8px;
 }
