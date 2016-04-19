@@ -14,7 +14,7 @@
         <link type="text/css" href="resource/css/style.css" rel="stylesheet"/>
         <script type="text/javascript" src="resource/js/myjs.js"></script>
     </head>
-    <body>
+    <body onload="loadCart();">
         <div id="main_container">
             <div id="header">
                 <div class="top_right">
@@ -27,11 +27,11 @@
             <div id="main_content">
                 <div id="menu_tab">
                     <ul class="menu">
-                        <li><a href="#" class="nav"> Home </a></li>
+                        <li><a href="#" class="nav"> Trang chủ </a></li>
                         <li class="divider"></li>
-                        <li><a href="#" class="nav">Products</a></li>
+                        <li><a href="#" class="nav">Comming soon....</a></li>
                         <li class="divider"></li>
-                        <li><a href="#" class="nav">Specials</a></li>
+<!--                        <li><a href="#" class="nav">Specials</a></li>
                         <li class="divider"></li>
                         <li><a href="#" class="nav">My account</a></li>
                         <li class="divider"></li>
@@ -41,7 +41,7 @@
                         <li class="divider"></li>
                         <li><a href="contact.html" class="nav">Contact Us</a></li>
                         <li class="divider"></li>
-                        <li><a href="details.html" class="nav">Details</a></li>
+                        <li><a href="details.html" class="nav">Details</a></li>-->
                     </ul>
                 </div>
                 <!-- end of menu tab -->
@@ -61,28 +61,28 @@
                 </div>
                 <div class="crumb_navigation"> Navigation: <span class="current">Home</span> </div>
                 <div class="left_content">
-                    <div class="title_box">Categories</div>
+                    <div class="title_box">Hãng</div>
                     <ul class="left_menu">
                         <c:forEach var="brand" items="${LISTBRAND}">
                             <li class="odd"><a href="CenterServlet?btAction=homepage&brandId=${brand.id}">${brand.name}</a></li>
                             </c:forEach>
                     </ul>
-                    <div class="title_box">Special Products</div>
+                    <div class="title_box">Laptop mới</div>
                     <div class="border_box">
                         <div class="product_title"><a href="#">Makita 156 MX-VL</a></div>
-                        <div class="product_img"><a href="#"><img src="images/p1.jpg" alt="" border="0" /></a></div>
+<!--                        <div class="product_img"><a href="#"><img src="images/p1.jpg" alt="" border="0" /></a></div>-->
                         <div class="prod_price"><span class="reduce">350$</span> <span class="price">270$</span></div>
                     </div>
                 </div>
                 <!-- end of left content -->
                 <div class="center_content">
-                    <div class="oferta"> <img src="images/p1.png" width="165" height="113" border="0" class="oferta_img" alt="" />
+<!--                    <div class="oferta"> <img src="images/p1.png" width="165" height="113" border="0" class="oferta_img" alt="" />
                         <div class="oferta_details">
                             <div class="oferta_title">Power Tools BST18XN Cordless</div>
                             <div class="oferta_text"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco </div>
                             <a href="#" class="prod_buy">details</a> </div>
-                    </div>
-                    <div class="center_title_bar">Latest Products</div>
+                    </div>-->
+                    <div class="center_title_bar">Laptop</div>
                     <c:forEach var="lap" items="${LISTLAP}">
                         <div class="prod_box">
                             <a href="CenterServlet?btAction=viewDetail&laptopId=${lap.id}">
@@ -94,7 +94,7 @@
                             </a>
                             <div class="prod_details_tab">
                                 <button class="prod_buy" onclick="addCompare(${lap.id}, '${lap.name}');">So sánh</button>
-                                <a href="#" class="prod_details">Details</a>
+                                <a href="${lap.sourceLink}" class="prod_details">Chi tiết</a>
                             </div>
                         </div>
                     </c:forEach>

@@ -3,29 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package fpt.lss.servlet;
 
 import fpt.lss.dao.LaptopDAO;
-import fpt.lss.dto.LaptopCompareDTO;
+import fpt.lss.dto.LaptopCompareJAXB;
+import fpt.lss.dto.ListLapComp;
 import fpt.lss.entity.Laptop;
-import fpt.lss.utils.DBUtils;
+import fpt.lss.utils.XMLUtils;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.JAXBException;
 
 /**
  *
  * @author HongLinh
  */
 public class CompareServlet extends HttpServlet {
-    
+
     private final String comparePage = "compare.jsp";
 
     /**
@@ -45,16 +47,23 @@ public class CompareServlet extends HttpServlet {
             String listLapId[] = request.getParameterValues("lapCompare");
             int id;
             Laptop lap;
-            List<LaptopCompareDTO> listLap = new ArrayList<LaptopCompareDTO>();
+            List<LaptopCompareJAXB> listLap = new ArrayList<LaptopCompareJAXB>();
             for (String str : listLapId) {
                 id = Integer.parseInt(str);
                 lap = lapDAO.getById(id);
-                listLap.add(new LaptopCompareDTO(lap));
+                listLap.add(new LaptopCompareJAXB(lap));
             }
-            
-            request.setAttribute("LISTLAP", listLap);
+
+            ListLapComp result = new ListLapComp();
+            result.setLaptopCompareJAXB(listLap);
+
+            String xml = XMLUtils.marshallToString(result);
+
+            request.setAttribute("XML", xml);
             RequestDispatcher rd = request.getRequestDispatcher(comparePage);
             rd.forward(request, response);
+        } catch (JAXBException ex) {
+            Logger.getLogger(CompareServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
         }
     }

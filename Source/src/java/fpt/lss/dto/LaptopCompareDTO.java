@@ -73,7 +73,7 @@ public class LaptopCompareDTO implements Serializable {
             this.screenSize = lap.getScreenSize().floatValue();
         }
         if (lap.getWeight() != null) {
-            this.weight = lap.getWeight().intValue();
+            this.weight = lap.getWeight().floatValue();
         }
     }
 

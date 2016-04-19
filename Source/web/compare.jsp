@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,7 +16,7 @@
     </head>
     <body>
         <header class="cd-header">
-            <h1>Pricing Tables</h1>
+            <h1>So sánh</h1>
         </header>
         <div class="cd-pricing-container cd-has-margins">
             <ul class="cd-pricing-list">
@@ -48,32 +49,12 @@
                                             <a class="cd-select" href="http://codyhouse.co/?p=429">Select</a>
                                         </footer>  .cd-pricing-footer -->
                 </li>
-                <c:forEach var="lap" items="${LISTLAP}">
-                    <li>
-                        <header class="cd-pricing-header">
-                            <h3>${lap.name}</h3>
-                            <div class="cd-price">
-                                <img class="avatar" src="${lap.avatar}"/>
-                            </div>
-                        </header> <!-- .cd-pricing-header -->
+                <c:set var="list" value="${XML}"/>
+                <c:if test="${not empty list}">
+                    <c:import var="xslt" url="resource/compLapXSL.xsl"/>
+                    <x:transform doc="${list}" xslt="${xslt}"/>
+                </c:if>
 
-                        <div class="cd-pricing-body">
-                            <ul class="cd-pricing-features">
-                                <li>${lap.cpu.key} (<em>${lap.cpu.value}</em>)</li>
-                                <li>${lap.ramSize} GB</li>
-                                <li>${lap.hddSize} GB</li>
-                                <li>${lap.ssdSize} GB</li>
-                                <li>${lap.videoCard.key} (<em>${lap.videoCard.value}</em>)</li>
-                                <li>${lap.screenSize} inch</li>
-                                <li>${lap.weight} kg</li>
-                            </ul>
-                        </div> <!-- .cd-pricing-body -->
-
-<!--                        <footer class="cd-pricing-footer">
-                            <a class="cd-select" href="http://codyhouse.co/?p=429">Select</a>
-                        </footer>  .cd-pricing-footer -->
-                    </li>
-                </c:forEach>
             </ul> <!-- .cd-pricing-list -->
         </div> <!-- .cd-pricing-container -->	
     </body>

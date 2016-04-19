@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://xml.netbeans.org/schema/lapComps"
+            xmlns="http://xml.netbeans.org/schema/lapComps"
+            elementFormDefault="qualified">
+    <xsd:element name="listLapComp">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="laptopCompareJAXB" type="LaptopCompareJAXB" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="LaptopCompareJAXB">
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:integer"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="avatar" type="xsd:string"/>
+            <xsd:element name="cpuName" type="xsd:string"/>
+            <xsd:element name="cpuMark" type="xsd:integer"/>
+            <xsd:element name="ramSize" type="xsd:integer"/>
+            <xsd:element name="hddSize" type="xsd:integer"/>
+            <xsd:element name="ssdSize" type="xsd:integer"/>
+            <xsd:element name="videoCardName" type="xsd:string"/>
+            <xsd:element name="videoCardMark" type="xsd:integer"/>
+            <xsd:element name="screenSize" type="xsd:float"/>
+            <xsd:element name="weight" type="xsd:float"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

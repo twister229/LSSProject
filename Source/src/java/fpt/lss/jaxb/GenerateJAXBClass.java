@@ -20,7 +20,8 @@ import org.xml.sax.InputSource;
 public class GenerateJAXBClass {
 
     public static void main(String[] args) throws IOException {
-        generate("fpt.lss.jaxb", "src/java/fpt/lss/jaxb/schema.xsd", "src/java/");
+//        generate("fpt.lss.jaxb", "src/java/fpt/lss/jaxb/schema.xsd", "src/java/");
+        generate("fpt.lss.dto", "src/java/fpt/lss/jaxb/compLapSche.xsd", "src/java/");
     }
 
     private static void generate(String packageName, String xsdPath, String desPath) throws IOException {

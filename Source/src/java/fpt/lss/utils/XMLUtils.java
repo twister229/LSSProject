@@ -8,8 +8,11 @@ package fpt.lss.utils;
 import fpt.lss.crawler.ValidationHandler;
 import fpt.lss.jaxb.LaptopJAXB;
 import java.io.File;
+import java.io.StringWriter;
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.util.JAXBSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
@@ -34,10 +37,22 @@ public class XMLUtils {
             validator.validate(source);
         } catch (Exception ex) {
             if (entity instanceof LaptopJAXB) {
-                System.out.println("Link: " + ((LaptopJAXB)entity).getSourceLink());
+                System.out.println("Link: " + ((LaptopJAXB) entity).getSourceLink());
             }
             return false;
         }
         return true;
+    }
+
+    public static <T> String marshallToString(T entity) throws JAXBException {
+        JAXBContext ctx = JAXBContext.newInstance(entity.getClass());
+        Marshaller mar = ctx.createMarshaller();
+        mar.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+        mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+        StringWriter sw = new StringWriter();
+        mar.marshal(entity, sw);
+
+        return sw.toString();
     }
 }
