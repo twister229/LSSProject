@@ -15,47 +15,48 @@
         <link type="text/css" rel="stylesheet" href="resource/css/compare_style.css"/>
     </head>
     <body>
-        <header class="cd-header">
-            <h1>So sánh</h1>
-        </header>
-        <div class="cd-pricing-container cd-has-margins">
-            <ul class="cd-pricing-list">
-                <li>
-                    <header class="cd-pricing-header">
-                        <h2>Thông tin</h2>
-                        <div class="cd-price">
+        <div class="center_content">
+            <div class="compare">
+                <div class="cd-pricing-container cd-has-margins">
+                    <ul class="cd-pricing-list">
+                        <li>
+                            <header class="cd-pricing-header">
+                                <h2 style="margin-top: 100px; color: red">Thông tin</h2>
+<!--                                <div class="cd-price">
 
-                        </div>
-                        <!--                        <div class="cd-price">
-                                                    <span class="cd-currency">$</span>
-                                                    <span class="cd-value">30</span>
-                                                    <span class="cd-duration">mo</span>
-                                                </div>-->
-                    </header> <!-- .cd-pricing-header -->
+                                </div>-->
+                                <!--                        <div class="cd-price">
+                                                            <span class="cd-currency">$</span>
+                                                            <span class="cd-value">30</span>
+                                                            <span class="cd-duration">mo</span>
+                                                        </div>-->
+                            </header> <!-- .cd-pricing-header -->
 
-                    <div class="cd-pricing-body">
-                        <ul class="cd-pricing-features">
-                            <li>CPU (Điểm)</li>
-                            <li>Bộ nhớ RAM</li>
-                            <li>Ổ cứng HDD</li>
-                            <li>Ổ cứng SSD</li>
-                            <li>Card màn hình (Điểm)</li>
-                            <li>Kích thước màn hình</li>
-                            <li>Cân nặng</li>
-                        </ul>
-                    </div> <!-- .cd-pricing-body -->
+                            <div class="cd-pricing-body">
+                                <ul class="cd-pricing-features">
+                                    <li>CPU (Điểm)</li>
+                                    <li>Bộ nhớ RAM</li>
+                                    <li>Ổ cứng HDD</li>
+                                    <li>Ổ cứng SSD</li>
+                                    <li>Card màn hình (Điểm)</li>
+                                    <li>Kích thước màn hình</li>
+                                    <li>Cân nặng</li>
+                                </ul>
+                            </div> <!-- .cd-pricing-body -->
 
-                    <!--                    <footer class="cd-pricing-footer">
-                                            <a class="cd-select" href="http://codyhouse.co/?p=429">Select</a>
-                                        </footer>  .cd-pricing-footer -->
-                </li>
-                <c:set var="list" value="${XML}"/>
-                <c:if test="${not empty list}">
-                    <c:import var="xslt" url="resource/compLapXSL.xsl"/>
-                    <x:transform doc="${list}" xslt="${xslt}"/>
-                </c:if>
+                            <!--                    <footer class="cd-pricing-footer">
+                                                    <a class="cd-select" href="http://codyhouse.co/?p=429">Select</a>
+                                                </footer>  .cd-pricing-footer -->
+                        </li>
+                        <c:set var="list" value="${XML}"/>
+                        <c:if test="${not empty list}">
+                            <c:import var="xslt" url="resource/compLapXSL.xsl"/>
+                            <x:transform doc="${list}" xslt="${xslt}"/>
+                        </c:if>
 
-            </ul> <!-- .cd-pricing-list -->
-        </div> <!-- .cd-pricing-container -->	
+                    </ul> <!-- .cd-pricing-list -->
+                </div> <!-- .cd-pricing-container -->
+            </div>
+        </div>
     </body>
 </html>

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package fpt.lss.servlet;
 
 import fpt.lss.dao.BrandDAO;
@@ -21,7 +20,10 @@ import javax.servlet.http.HttpServletResponse;
  * @author HongLinh
  */
 public class HomeServlet extends HttpServlet {
+
     private final String homepage = "homepage.jsp";
+    private final int itemEachPage = 12;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,20 +39,40 @@ public class HomeServlet extends HttpServlet {
         BrandDAO brandDAO = new BrandDAO();
         LaptopDAO laptopDAO = new LaptopDAO();
         try {
-            List listBrand = brandDAO.getAllBrand();
-            request.setAttribute("LISTBRAND", listBrand);
-            
+//            List listBrand = brandDAO.getAllBrand();
+//            request.setAttribute("LISTBRAND", listBrand);
+
             String cateParam = request.getParameter("brandId");
+            String page = request.getParameter("pageNum");
             int brandId = 0;
+            int pageNum = 0;
             if (cateParam == null) {
                 cateParam = "1";
             }
-            brandId = Integer.parseInt(cateParam);
+            if (page == null) {
+                page = "1";
+            }
+            try {
+                brandId = Integer.parseInt(cateParam);
+                pageNum = Integer.parseInt(page);
+            } catch (Exception ex) {
+                brandId = 1;
+                pageNum = 1;
+            }
+            int total = laptopDAO.getTotalLapByBrand(brandId);
+            int offset = 0;
+            int limit = itemEachPage;
+            if ((pageNum - 1) * itemEachPage > total) {
+                pageNum = total / itemEachPage + 1;
+            }
+            offset = (pageNum - 1) * itemEachPage;
             if (brandId > 0) {
-                List listLaptop = laptopDAO.getLaptopByBrandId(brandId);
+                List listLaptop = laptopDAO.getLaptopByBrandId(brandId, offset, limit);
                 request.setAttribute("LISTLAP", listLaptop);
             }
-            
+            request.setAttribute("pageNum", pageNum);
+            request.setAttribute("totalPage", total / itemEachPage + 1);
+            request.setAttribute("brandId", brandId);
             RequestDispatcher rd = request.getRequestDispatcher(homepage);
             rd.forward(request, response);
         } finally {

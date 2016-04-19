@@ -167,6 +167,51 @@ public class DBUtils {
         return null;
     }
 
+    public static <T> List<T> fetchByQueryLimitOffset(String query, Class<T> entityClass, int offset, int limit, Object... params) {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            con = getConnection();
+            List<T> result = new ArrayList<T>();
+            T instance;
+            String keyLabel = getKey(entityClass);
+//            String sql = "SELECT * FROM " + entityClass.getAnnotation(Table.class).name() + " " + query;
+            String sql = "SELECT * FROM (SELECT *, ROW_NUMBER() OVER (ORDER BY " + keyLabel + ") as row FROM "
+                    + entityClass.getAnnotation(Table.class).name() + " " + query + ") a WHERE row > " + offset + "and row <= " + (offset + limit);
+            stm = con.prepareStatement(sql);
+            if (params != null) {
+                for (int i = 0; i < params.length; i++) {
+                    stm.setObject(i + 1, params[i]);
+                }
+            }
+            rs = stm.executeQuery();
+
+            while (rs.next()) {
+                instance = entityClass.newInstance();
+                for (Field field : entityClass.getDeclaredFields()) {
+                    String value = field.getAnnotation(Entity.class).name();
+                    field.setAccessible(true);
+                    field.set(instance, rs.getObject(value));
+                }
+                result.add(instance);
+            }
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                stm.close();
+                con.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
     public static <T> T update(T entity) {
         Connection con = null;
         PreparedStatement stm = null;
@@ -278,6 +323,81 @@ public class DBUtils {
             }
         }
         return null;
+    }
+
+    public static <T> List<T> fetchAllLimitOffset(Class<T> entityClass, int offset, int limit) {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            con = getConnection();
+            List<T> result = new ArrayList<T>();
+            T instance;
+            String keyLabel = getKey(entityClass);
+//            String sql = "SELECT * FROM " + entityClass.getAnnotation(Table.class).name() + " " + query;
+            String sql = "SELECT * FROM (SELECT *, ROW_NUMBER() OVER (ORDER BY " + keyLabel + ") as row FROM "
+                    + entityClass.getAnnotation(Table.class).name() + ") a WHERE row > " + offset + "and row <= " + (offset + limit);
+            stm = con.prepareStatement(sql);
+            rs = stm.executeQuery();
+
+            while (rs.next()) {
+                instance = entityClass.newInstance();
+                for (Field field : entityClass.getDeclaredFields()) {
+                    String value = field.getAnnotation(Entity.class).name();
+                    field.setAccessible(true);
+                    field.set(instance, rs.getObject(value));
+                }
+                result.add(instance);
+            }
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                stm.close();
+                con.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    public static <T> int getCount(Class<T> entityClass, String query, Object... params) {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            con = getConnection();
+            String sql = "SELECT COUNT(*) FROM " + entityClass.getAnnotation(Table.class).name() + " " + query;
+            stm = con.prepareStatement(sql);
+
+            if (params != null) {
+                for (int i = 0; i < params.length; i++) {
+                    stm.setObject(i + 1, params[i]);
+                }
+            }
+
+            rs = stm.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                stm.close();
+                con.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return 0;
     }
 
     private static String getKey(Class entityClass) {

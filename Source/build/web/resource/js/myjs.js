@@ -40,6 +40,10 @@ function addCompare(id, name) {
     if (checkExistedCompareLap(id)) {
         return;
     }
+    if (cart.length >= 3) {
+        alert("Chỉ so sánh tối đa 3 sản phẩm!");
+        return;
+    }
     var obj = {id: id, name: name};
     cart[cart.length] = obj;
     sessionStorage.setItem("cart", JSON.stringify(cart));
@@ -107,5 +111,6 @@ function compareLap() {
     if (rowCount > 1) {
         return true;
     }
+    alert("So sánh từ 2 đến 3 sản phẩm!");
     return false;
 }
